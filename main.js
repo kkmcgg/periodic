@@ -44,7 +44,7 @@ var material = new THREE.MeshBasicMaterial({color: 0x00ff00});
 for(var i = 0; i < table.length; i += 5) {
     var element = new THREE.Mesh(geometry, material);
     element.position.x = table[i+3];
-    element.position.y = table[i+4];
+    element.position.y = table[i+4] * -1;
     element.userData = {
         symbol: table[i],
         name: table[i+1],
@@ -53,7 +53,9 @@ for(var i = 0; i < table.length; i += 5) {
     scene.add(element);
 }
 
-camera.position.z = 5;
+// camera.position.z = 5;
+
+camera.position.set(9, -3.5, 20);
 
 // Function to render the scene
 function animate() {
