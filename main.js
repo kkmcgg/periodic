@@ -1,0 +1,58 @@
+// Three.js setup
+var scene = new THREE.Scene();
+var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+var renderer = new THREE.WebGLRenderer();
+
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+// Set up raycaster for mouse events
+var raycaster = new THREE.Raycaster();
+var mouse = new THREE.Vector2();
+
+// Function to handle mouse move events
+function onMouseMove(event) {
+    // Normalize mouse position from -1 to +1
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+}
+
+// Set up cubes for elements
+var geometry = new THREE.BoxGeometry(1, 1, 1);
+var material = new THREE.MeshBasicMaterial({color: 0x00ff00});
+
+for(var i = 0; i < table.length; i += 5) {
+    var element = new THREE.Mesh(geometry, material);
+    element.position.x = table[i+3];
+    element.position.y = table[i+4];
+    element.userData = {
+        symbol: table[i],
+        name: table[i+1],
+        atomic_weight: table[i+2]
+    };
+    scene.add(element);
+}
+
+camera.position.z = 5;
+
+// Function to render the scene
+function animate() {
+    requestAnimationFrame(animate);
+    renderer.render(scene, camera);
+}
+animate();
+
+// Event listeners
+window.addEventListener('mousemove', onMouseMove, false);
+window.addEventListener('click', function() {
+    // Update the raycaster
+    raycaster.setFromCamera(mouse, camera);
+
+    // Calculate objects intersecting the picking ray
+    var intersects = raycaster.intersectObjects(scene.children);
+
+    if(intersects.length > 0) {
+        // Handle click event on object here
+        console.log('Clicked on: ', intersects[0].object.userData);
+    }
+}, false);
