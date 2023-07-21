@@ -22,7 +22,7 @@ function onMouseMove(event) {
 }
 
 // Set up cubes for elements
-var geometry = new THREE.BoxGeometry(1, 1, 1);
+var geometry = new THREE.BoxGeometry(100, 100, 100);
 var material = new THREE.MeshBasicMaterial({color: 0x00ff00});
 
 
