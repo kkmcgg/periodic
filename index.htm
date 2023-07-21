@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Periodic Table</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Periodic Table</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Weight</th>
+                <th>Group</th>
+                <th>Period</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <!-- Elements will be inserted here by JavaScript -->
+        </tbody>
+    </table>
+    <script src="elements.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
